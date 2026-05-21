@@ -1,18 +1,19 @@
 class Solution {
+    int pf[];
     public int largestAltitude(int[] gain) {
-        // starting point of biker
-        int startPoint = 0;
-        int maxHeight = 0;
-
-        for(int i=0; i<gain.length; i++)
+        pf = new int[gain.length+1];
+        // starting point
+        int start = 0;
+        pf[start] = 0;
+        int maxPoint = 0;
+        for(int i=1; i<pf.length; i++)
         {
-            startPoint = startPoint+gain[i];
-            if(startPoint > maxHeight)
+            pf[i] = pf[i-1]+gain[i-1];
+            if(maxPoint < pf[i])
             {
-                maxHeight = startPoint;
+                maxPoint = pf[i];
             }
         }
-
-        return maxHeight;
+        return maxPoint;
     }
 }
