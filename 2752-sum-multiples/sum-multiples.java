@@ -1,21 +1,23 @@
 class Solution {
     public int sumOfMultiples(int n) {
+        
         int sum = 0;
-       for(int i=1; i<=n; i++)
-       {
-        if(i%3==0)
+        while(n>0)
         {
-            sum = sum+i;
+            if(n%3==0)
+            {
+                sum = sum+n;
+            }
+            else if(n%5==0)
+            {
+                sum = sum+n;
+            }
+            else if(n%7==0)
+            {
+                sum = sum+n;
+            }
+            n--;
         }
-        else if(i%5==0)
-        {
-            sum = sum+i;
-        }
-        else if(i%7==0)
-        {
-            sum = sum+i;
-        }
-       } 
-       return sum; 
+        return sum;
     }
 }
