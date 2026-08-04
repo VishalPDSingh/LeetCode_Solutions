@@ -1,17 +1,24 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class Solution {
     public List<Integer> findMissingElements(int[] nums) {
-        Arrays.sort(nums);
-        List<Integer> missing = new ArrayList<>();
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        Set<Integer> present = new HashSet<>();
         
-        // Iterate through adjacent pairs in the sorted array
-        for (int i = 0; i < nums.length - 1; i++) {
-            // Fill in any gaps between nums[i] and nums[i + 1]
-            for (int val = nums[i] + 1; val < nums[i + 1]; val++) {
-                missing.add(val);
+        for (int num : nums) {
+            min = Math.min(min, num);
+            max = Math.max(max, num);
+            present.add(num);
+        }
+        
+        List<Integer> missing = new ArrayList<>();
+        for (int i = min + 1; i < max; i++) {
+            if (!present.contains(i)) {
+                missing.add(i);
             }
         }
         
